@@ -33,6 +33,7 @@ webhookHandler.on('push', function (repo, data) {
         console.log(filePath);
     }
 
+
     // allTrigeeredFile.forEach( async function(filePath) {
     //     console.log("check for file: " + filePath);
     //     await axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config)
