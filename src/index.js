@@ -22,7 +22,7 @@ webhookHandler.on('push', function (repo, data) {
         .then(response => {
             console.log(response.data);
             //console.log(response.data.explanation);
-            var contents = base64.decode(res.content);
+            var contents = base64.decode(response.content);
 
         })
         .catch(error => {
