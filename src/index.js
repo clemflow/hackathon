@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(webhookHandler);
 
 webhookHandler.on('push', async function (repo, data) {
-    //console.log(data);
+    console.log(data);
     //console.log(data.head_commit);
     //console.log(data.head_commit.modified);
     //console.log(data.head_commit.committer.name);
