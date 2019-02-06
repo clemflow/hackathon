@@ -7,14 +7,15 @@ services:
     ports:
       - "3000:3000"
     links:
-      - mongo
-  mongo:
-    container_name: mongo
-    image: mongo
-    ports:
-      - "27017:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME: root
-      - MONGO_INITDB_ROOT_PASSWORD: example
-      - MONGODB_DATABASE=hackathon
-      - ALLOW_EMPTY_PASSWORD=yes
+      - mongodb
+  mongodb:
+      image: mongo:3.2
+      container_name: mongodb
+      hostname: mongodb
+      environment:
+          - MONGODB_USER="root"
+          - MONGODB_PASS="toor"
+      volumes:
+        - ./data/db:/data/db
+      ports:
+          - 27017:27017
