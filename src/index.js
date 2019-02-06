@@ -13,7 +13,7 @@ const axios = require('axios');
 app.use(bodyParser.json());
 app.use(webhookHandler);
 
-webhookHandler.on('push', function (repo, data) {
+webhookHandler.on('push', async function (repo, data) {
     //console.log(data);
     //console.log(data.head_commit);
     //console.log(data.head_commit.modified);
@@ -31,24 +31,24 @@ webhookHandler.on('push', function (repo, data) {
 
 
     for (const filePath of allTrigeredFile) {
-        console.log(filePath);
+        console.log(filePath)
+        let res =  axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config);
+        console.log(res);
+        // .then(response => {
+        //     //console.log(response.data);
+        //     console.log(data.head_commit.committer.name);
+        //     splitter.getFromBetween.get(response.data, "<$","$>");
+        //     codeToSave = _.concat(codeToSave, response.data.split(/[<$$>]/));
+        //     console.log(codeToSave);
+        //
+        // })
+        // .catch(error => {
+        //     console.log(error);
+        // });
     }
 
-
     // allTrigeeredFile.forEach( async function(filePath) {
-    //     console.log("check for file: " + filePath);
-    //     await axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config)
-    //         .then(response => {
-    //             //console.log(response.data);
-    //             console.log(data.head_commit.committer.name);
-    //             splitter.getFromBetween.get(response.data, "<$","$>");
-    //             codeToSave = _.concat(codeToSave, response.data.split(/[<$$>]/));
-    //             console.log(codeToSave);
     //
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
     // });
     //console.log(codeToSave);
 
