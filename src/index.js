@@ -29,14 +29,16 @@ webhookHandler.on('push', function (repo, data) {
         }
     };
 
-    allTrigeeredFile.forEach( function(filePath) {
+    allTrigeeredFile.forEach( async function(filePath) {
         console.log("check for file: " + filePath);
-        axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config)
+        await axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config)
             .then(response => {
                 //console.log(response.data);
                 console.log(data.head_commit.committer.name);
                 splitter.getFromBetween.get(response.data, "<$","$>");
                 codeToSave = _.concat(codeToSave, response.data.split(/[<$$>]/));
+//                console.log(codeToSave);
+
             })
             .catch(error => {
                 console.log(error);
