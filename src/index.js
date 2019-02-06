@@ -5,6 +5,7 @@ let GithubWebHook = require('express-github-webhook');
 let webhookHandler = GithubWebHook({ path: '/', secret: 'azerty' });
 let bodyParser = require('body-parser');
 let _ = require('lodash');
+let splitter = require("./splitManager.js");
 
 const axios = require('axios');
 
@@ -16,14 +17,25 @@ webhookHandler.on('push', function (repo, data) {
     //console.log(data);
     //console.log(data.head_commit);
     //console.log(data.head_commit.modified);
-    //console.log(data.head_commit.added);
+    //console.log(data.head_commit.committer.name);
     let allTrigeeredFile = _.concat(data.head_commit.modified, data.head_commit.added);
     console.log(allTrigeeredFile);
 
     console.log("push triggered !!");
-
-    allTrigeeredFile.forEach( function(element) {
-        console.log(element);
+    let codeToSave = [];
+    allTrigeeredFile.forEach( function(filePath) {
+        console.log("check for file: " + filePath);
+        axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config)
+            .then(response => {
+                //console.log(response.data);
+                console.log(data.head_commit.committer.name);
+                splitter.getFromBetween.get(response.data, "<$","$>");
+                codeToSave = _.concat(codeToSaveArray, response.data.split(/[<$$>]/));
+                console.log(codeToSave);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     });
 
     let config = {
@@ -32,14 +44,6 @@ webhookHandler.on('push', function (repo, data) {
         }
     };
 
-    // axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/src/index.js', config)
-    //     .then(response => {
-    //         console.log(response.data);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     });
-    //ddd
 
 });
 
