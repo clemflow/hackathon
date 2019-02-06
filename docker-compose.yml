@@ -16,6 +16,5 @@ services:
     ports:
       - "27017:27017"
     environment:
-      - MONGODB_USERNAME=root
-      - MONGODB_PASSWORD=toor
       - MONGODB_DATABASE=hackathon
+      - ALLOW_EMPTY_PASSWORD=yes
