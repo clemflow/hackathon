@@ -18,12 +18,11 @@ webhookHandler.on('push', function (repo, data) {
     //console.log(data.head_commit.modified);
     console.log("push triggered !!");
 
-    axios.get('https://api.github.com/repos/clemflow/hackathon/contents/src/index.js')
+    axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/src/index.js')
         .then(response => {
-            console.log(response.data);
             //console.log(response.data.explanation);
-            var contents = base64.decode(response.content);
-
+            let contents = base64.decode(response.content);
+            console.log(contents);
         })
         .catch(error => {
             console.log(error);
