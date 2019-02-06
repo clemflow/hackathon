@@ -9,7 +9,6 @@ let splitter = require("./splitManager.js");
 
 const axios = require('axios');
 
-
 app.use(bodyParser.json());
 app.use(webhookHandler);
 
