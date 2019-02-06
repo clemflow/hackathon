@@ -1,5 +1,8 @@
-// <$
-MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
+let MongoClient = require('mongodb').MongoClient;
+let url = ;
+
+// <$ description="tests exemple" tags="test;javascript;enjoy"
+MongoClient.connect("mongodb://localhost:27017/", { useNewUrlParser: true }, function(err, db) {
     if (err) throw err;
     console.log("Database created!");
 
