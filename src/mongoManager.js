@@ -3,6 +3,24 @@ let url = "mongodb://localhost:27017/hackathon";
 
 
 module.exports = {
+    createDB: function () {
+        MongoClient.connect(url,  { useNewUrlParser: true }, function(err, db) {
+            if (err) throw err;
+            console.log("Database created!");
+            db.close();
+        });
+
+        MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db("hackathon");
+            dbo.createCollection("codes", function(err, res) {
+                if (err) throw err;
+                console.log("Collection created!");
+                db.close();
+            });
+        });
+    },
+
     saveCode: function(jsonObject) {
         MongoClient.connect(url,{ useNewUrlParser: true }, function(err, db) {
             if (err) throw err;
