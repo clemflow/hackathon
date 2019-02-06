@@ -9,14 +9,12 @@ services:
     links:
       - mongodb
   mongodb:
-      image: mongo:3.2
+      image: mongo
       container_name: mongodb
       hostname: mongodb
       environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=toor
-      - MONGO_INITDB_DATABASE=hackathon
-      volumes:
-        - ./data/db:/data/db
+          - MONGODB_USER="user"
+          - MONGODB_PASS="pass"
+          - MONGO_INITDB_DATABASE="hackathon"
       ports:
-          - 27017:27017
+          - "27017:27017"
