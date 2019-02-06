@@ -44,9 +44,6 @@ webhookHandler.on('push', function (repo, data) {
             });
     });
 
-
-
-
 });
 
 webhookHandler.on('*', function (event, repo, data) {
