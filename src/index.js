@@ -33,6 +33,7 @@ webhookHandler.on('push', async function (repo, data) {
         //     console.log(data.head_commit.committer.name);
 
     }
+    mongoManager.saveCode("{test : \"test\"}");
     console.log(codeToSave);
 });
 
