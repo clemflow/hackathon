@@ -38,11 +38,8 @@ module.exports = {
 
 
 // <$
-
 function test() {
-    let str = "hfsuhfus uifezf fzifz<$ triger part $> effbhfbrfref <$other triger part $>  be";
-
-
+    let str = "hfsuhfus uifezf fzifz <'$' triger part '$'> effbhfbrfref <$other triger part $>  be";
     var result = getFromBetween.get(str,"<$","$>");
     console.log(result);
 }
