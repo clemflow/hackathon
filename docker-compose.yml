@@ -8,6 +8,8 @@ services:
       - "3000:3000"
     links:
       - mongodb
+    depends_on:
+      - mongodb
   mongodb:
       image: mongo
       container_name: mongodb
@@ -16,5 +18,7 @@ services:
           - MONGODB_USER="user"
           - MONGODB_PASS="pass"
           - MONGO_INITDB_DATABASE="hackathon"
+          - MONGO_DATA_DIR=/data/db
+          - MONGO_LOG_DIR=/dev/null
       ports:
           - "27017:27017"

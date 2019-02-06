@@ -1,16 +1,21 @@
 let MongoClient = require('mongodb').MongoClient;
-let url = ;
+let url = "mongodb://localhost:27017/hackathon";
 
 // <$ description="tests exemple" tags="test;javascript;enjoy"
-MongoClient.connect("mongodb://localhost:27017/", { useNewUrlParser: true }, function(err, db) {
+MongoClient.connect(url,  { useNewUrlParser: true }, function(err, db) {
     if (err) throw err;
     console.log("Database created!");
-
-    var dbo = db.db("hackathon");
-    dbo.createCollection("codes", function(err, res) {
-        if (err) throw err;
-        console.log("Collection created!");
-    });
     db.close();
 });
+
+MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("hackathon");
+    dbo.createCollection("lolo", function(err, res) {
+        if (err) throw err;
+        console.log("Collection created!");
+        db.close();
+    });
+});
+
 // $>
