@@ -15,6 +15,7 @@ services:
       environment:
           - MONGODB_USER="root"
           - MONGODB_PASS="toor"
+          - MONGODB_DATABASE="hackathon"
       volumes:
         - ./data/db:/data/db
       ports:
