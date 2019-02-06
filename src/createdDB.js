@@ -1,7 +1,8 @@
 let MongoClient = require('mongodb').MongoClient;
 let url = "mongodb://localhost:27017/hackathon";
 
-// <$ description="tests exemple" tags="test;javascript;enjoy"
+// <$ description="init mongo" tags="test;javascript;mongodb"
+
 MongoClient.connect(url,  { useNewUrlParser: true }, function(err, db) {
     if (err) throw err;
     console.log("Database created!");
