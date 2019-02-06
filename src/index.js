@@ -16,8 +16,8 @@ webhookHandler.on('push', function (repo, data) {
     //console.log(data);
     //console.log(data.head_commit);
     //console.log(data.head_commit.modified);
-    console.log("push triggered !!");
 
+    console.log("push triggered !!");
     axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/src/index.js')
         .then(response => {
             //console.log(response.data.explanation);
