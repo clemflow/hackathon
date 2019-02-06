@@ -33,13 +33,14 @@ webhookHandler.on('push', async function (repo, data) {
 
     for (const filePath of allTrigeredFile) {
         console.log(filePath)
-        let res = await axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config);
-        console.log(res);
+        let response = await axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config);
+        splitter.getFromBetween.get(response.data, "<$","$>");
+        codeToSave = _.concat(codeToSave, response.data.split(/[<$$>]/));
+        //.log(res);
         // .then(response => {
         //     //console.log(response.data);
         //     console.log(data.head_commit.committer.name);
-        //     splitter.getFromBetween.get(response.data, "<$","$>");
-        //     codeToSave = _.concat(codeToSave, response.data.split(/[<$$>]/));
+        //
         //     console.log(codeToSave);
         //
         // })
@@ -51,7 +52,7 @@ webhookHandler.on('push', async function (repo, data) {
     // allTrigeeredFile.forEach( async function(filePath) {
     //
     // });
-    //console.log(codeToSave);
+    console.log(codeToSave);
 
 });
 
