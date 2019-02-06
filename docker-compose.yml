@@ -13,9 +13,9 @@ services:
       container_name: mongodb
       hostname: mongodb
       environment:
-          - MONGODB_USER="root"
-          - MONGODB_PASS="toor"
-          - MONGODB_DATABASE="hackathon"
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=hackathon
       volumes:
         - ./data/db:/data/db
       ports:
