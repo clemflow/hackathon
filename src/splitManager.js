@@ -35,6 +35,7 @@ module.exports = {
         }
     }
 };
+// <$
 
 function test() {
     let str = "hfsuhfus uifezf fzifz<$ triger part $> effbhfbrfref <$other triger part $>  be";
@@ -43,3 +44,4 @@ function test() {
     var result = getFromBetween.get(str,"<$","$>");
     console.log(result);
 }
+// $>
