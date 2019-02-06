@@ -1,6 +1,5 @@
 let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb://localhost:27017/hackathon";
-
+let url = "mongodb://mongodb:27017/hackathon";
 
 module.exports = {
     createDB: function () {
