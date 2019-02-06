@@ -29,6 +29,7 @@ webhookHandler.on('push', function (repo, data) {
         }
     };
 
+
     for (const filePath of allTrigeredFile) {
         console.log(filePath);
     }
