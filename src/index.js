@@ -19,7 +19,7 @@ webhookHandler.on('push', function (repo, data) {
     //console.log(data.head_commit.modified);
     //console.log(data.head_commit.committer.name);
     let allTrigeeredFile = _.concat(data.head_commit.modified, data.head_commit.added);
-    console.log(allTrigeeredFile);
+    console.log(allTrigeredFile);
 
     console.log("push triggered !!");
     let codeToSave = [];
@@ -29,22 +29,26 @@ webhookHandler.on('push', function (repo, data) {
         }
     };
 
-    allTrigeeredFile.forEach( async function(filePath) {
-        console.log("check for file: " + filePath);
-        await axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config)
-            .then(response => {
-                //console.log(response.data);
-                console.log(data.head_commit.committer.name);
-                splitter.getFromBetween.get(response.data, "<$","$>");
-                codeToSave = _.concat(codeToSave, response.data.split(/[<$$>]/));
-//                console.log(codeToSave);
+    for (const filePath of allTrigeredFile) {
+        console.log(filePath);
+    }
 
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    });
-    console.log(codeToSave);
+    // allTrigeeredFile.forEach( async function(filePath) {
+    //     console.log("check for file: " + filePath);
+    //     await axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config)
+    //         .then(response => {
+    //             //console.log(response.data);
+    //             console.log(data.head_commit.committer.name);
+    //             splitter.getFromBetween.get(response.data, "<$","$>");
+    //             codeToSave = _.concat(codeToSave, response.data.split(/[<$$>]/));
+    //             console.log(codeToSave);
+    //
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // });
+    //console.log(codeToSave);
 
 });
 
