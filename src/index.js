@@ -18,7 +18,7 @@ webhookHandler.on('push', function (repo, data) {
     //console.log(data.head_commit);
     //console.log(data.head_commit.modified);
     //console.log(data.head_commit.committer.name);
-    let allTrigeeredFile = _.concat(data.head_commit.modified, data.head_commit.added);
+    let allTrigeredFile = _.concat(data.head_commit.modified, data.head_commit.added);
     console.log(allTrigeredFile);
 
     console.log("push triggered !!");
