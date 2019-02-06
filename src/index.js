@@ -36,13 +36,14 @@ webhookHandler.on('push', function (repo, data) {
                 //console.log(response.data);
                 console.log(data.head_commit.committer.name);
                 splitter.getFromBetween.get(response.data, "<$","$>");
-                codeToSave = _.concat(codeToSaveArray, response.data.split(/[<$$>]/));
-                console.log(codeToSave);
+                codeToSave = _.concat(codeToSave, response.data.split(/[<$$>]/));
             })
             .catch(error => {
                 console.log(error);
             });
     });
+    console.log(codeToSave);
+
 
 });
 
