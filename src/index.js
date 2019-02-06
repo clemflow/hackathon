@@ -23,6 +23,12 @@ webhookHandler.on('push', function (repo, data) {
 
     console.log("push triggered !!");
     let codeToSave = [];
+    let config = {
+        headers: {
+            accept:  'application/vnd.github.VERSION.raw',
+        }
+    };
+
     allTrigeeredFile.forEach( function(filePath) {
         console.log("check for file: " + filePath);
         axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config)
@@ -38,11 +44,7 @@ webhookHandler.on('push', function (repo, data) {
             });
     });
 
-    let config = {
-        headers: {
-            accept:  'application/vnd.github.VERSION.raw',
-        }
-    };
+
 
 
 });
