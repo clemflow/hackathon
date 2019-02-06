@@ -6,6 +6,7 @@ let webhookHandler = GithubWebHook({ path: '/', secret: 'azerty' });
 let bodyParser = require('body-parser');
 let _ = require('lodash');
 let splitter = require("./splitManager.js");
+let mongoManager = require("./mongoManager.js");
 
 const axios = require('axios');
 
@@ -13,9 +14,6 @@ app.use(bodyParser.json());
 app.use(webhookHandler);
 
 webhookHandler.on('push', async function (repo, data) {
-    console.log(data);
-    //console.log(data.head_commit);
-    //console.log(data.head_commit.modified);
     //console.log(data.head_commit.committer.name);
     let allTrigeredFile = _.concat(data.head_commit.modified, data.head_commit.added);
     console.log(allTrigeredFile);
@@ -32,24 +30,10 @@ webhookHandler.on('push', async function (repo, data) {
         console.log(filePath)
         let response = await axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config);
         codeToSave = _.concat(codeToSave, splitter.getFromBetween.get(response.data, "<$","$>"));
-        //.log(res);
-        // .then(response => {
-        //     //console.log(response.data);
         //     console.log(data.head_commit.committer.name);
-        //
-        //     console.log(codeToSave);
-        //
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        // });
+
     }
-
-    // allTrigeeredFile.forEach( async function(filePath) {
-    //
-    // });
     console.log(codeToSave);
-
 });
 
 webhookHandler.on('*', function (event, repo, data) {
