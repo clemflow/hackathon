@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(webhookHandler);
 
 webhookHandler.on('push', function (repo, data) {
-    //console.log(data);
+    console.log(data);
     console.log("push triggered !!");
 });
 
@@ -30,3 +30,8 @@ app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
 });
 
+/*
+*
+* dedededede
+*
+* */
