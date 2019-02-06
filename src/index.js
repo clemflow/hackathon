@@ -22,12 +22,14 @@ webhookHandler.on('push', function (repo, data) {
             accept:  'application/vnd.github.VERSION.raw',
         }
     };
+
     axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/src/index.js', config)
         .then(response => {
-            //console.log(response.data.explanation);
+            console.log(response);
+            console.log(response.data.explanation);
             let contents = base64.decode(response.content);
-            console.log(response.content);
-            console.log(contents);
+            //console.log(response.content);
+            //console.log(contents);
         })
         .catch(error => {
             console.log(error);
