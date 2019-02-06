@@ -16,7 +16,6 @@ webhookHandler.on('push', function (repo, data) {
     //console.log(data);
     //console.log(data.head_commit);
     //console.log(data.head_commit.modified);
-
     console.log("push triggered !!");
     let config = {
         headers: {
