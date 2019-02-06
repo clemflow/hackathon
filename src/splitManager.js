@@ -33,7 +33,7 @@ module.exports = {
             this.getAllResults(sub1,sub2);
             return this.results;
         }
-    };
+    }
 };
 
 function test() {
@@ -43,4 +43,3 @@ function test() {
     var result = getFromBetween.get(str,"<$","$>");
     console.log(result);
 }
-test();
