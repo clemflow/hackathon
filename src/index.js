@@ -48,7 +48,8 @@ webhookHandler.on('error', function (err, req, res) {
 
 app.get('/test', function(req, res) {
     res.send('hello world');
-    mongoManager.saveCode("{teste : 'test'}")
+    var myobj = { name: "Company Inc", address: "Highway 37" };
+    mongoManager.saveCode(myobj)
 });
 
 app.listen(3000, function () {
