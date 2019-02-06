@@ -37,7 +37,7 @@ module.exports = {
 };
 
 
-// <$
+// <$ TAG=['test', ''] LG=javascript
 function test() {
     let str = "hfsuhfus uifezf fzifz <'$' triger part '$'> effbhfbrfref <'$other triger part $'>  be";
     var result = getFromBetween.get(str,"<$","$>");
