@@ -11,7 +11,7 @@ module.exports = {
 
         MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
             if (err) throw err;
-            var dbo = db.db("hackathon");
+            let dbo = db.db("hackathon");
             dbo.createCollection("codes", function(err, res) {
                 if (err) throw err;
                 console.log("Collection created!");
