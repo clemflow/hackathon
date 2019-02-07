@@ -48,8 +48,9 @@ app.get('/test', function(req, res) {
     mongoManager.saveCode(myobj)
 });
 
-app.get('/all', function(req, res) {
-    res.send(mongoManager.findAll());
+app.get('/all', async function(req, res) {
+    let result = await mongoManager.findAll();
+    res.send(result);
 });
 
 
