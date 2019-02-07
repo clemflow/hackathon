@@ -45,7 +45,8 @@ module.exports = {
             res = {tag: this.getFromBetween.get(code, "tag=\"","\"").toString().split(","),
                 description: this.getFromBetween.get(code, "description=\"","\"")[0],
             author: authorName, code: this.getFromBetween.get(tmp, "$$", "*") };
-            mongoManager.saveCode(res);
+            if (res.code.length > 0)
+                mongoManager.saveCode(res);
 
             //all.push(res);
         }
