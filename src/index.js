@@ -25,13 +25,14 @@ webhookHandler.on('push', async function (repo, data) {
             accept:  'application/vnd.github.VERSION.raw',
         }
     };
-
+    let re = /(?:\.([^.]+))?$/;
+    console.log("ext : " + re.exec(filePath)[1]);
     for (const filePath of allTrigeredFile) {
         let response = await axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config);
-        codeToSave = _.concat(codeToSave, splitter.getFromBetween.get(response.data, "<$","$>"));
+        codeToSave = _.concat(codeToSave, [splitter.getFromBetween.get(response.data, "<$","$>"), re.exec(filePath)[1]]);
     }
 
-    splitter.getTags(codeToSave, data.head_commit.committer.name);
+    splitter.getTags(codeToSave, data.head_commit.committer.name, );
 });
 
 webhookHandler.on('*', function (event, repo, data) {
@@ -45,7 +46,8 @@ webhookHandler.on('error', function (err, req, res) {
 app.get('/test', function(req, res) {
     res.send('hello world');
     let myobj = { tag: ['c#', 'mongo'], description: "some description.",
-    author: "Jules Cesar", code: "function () { \n console.log('hello') \n}" };
+    author: "Jules Cesar", code: "function () { \n console.log('hello') \n}",
+        type: "code", language: "js" };
     mongoManager.saveCode(myobj)
 });
 
@@ -55,7 +57,7 @@ app.get('/all', async function(req, res) {
 });
 
 app.post('/add', async function(req, res) {
-    console.log(req.body);      // your JSON
+    console.log(req.body);
     let result = await mongoManager.saveCode(req.body);
     res.send("ok");
 });
@@ -64,6 +66,4 @@ app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
     mongoManager.createDB();
 });
-
-
 

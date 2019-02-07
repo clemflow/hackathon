@@ -36,7 +36,7 @@ module.exports = {
             return this.results;
         }
     },
-    getTags: function (codesArray, authorName) {
+    getTags: function (codesArray, authorName, language) {
         // all = [];
         for (const code of codesArray) {
             // console.log("tag = " + this.getFromBetween.get(code, "tag=\"","\"").split(",").toString());
@@ -44,7 +44,7 @@ module.exports = {
             let tmp = code + '*';
             res = {tag: this.getFromBetween.get(code, "tag=\"","\"").toString().split(","),
                 description: this.getFromBetween.get(code, "description=\"","\"")[0],
-            author: authorName, code: this.getFromBetween.get(tmp, "$$", "*") };
+            author: authorName, code: this.getFromBetween.get(tmp, "$$", "*"),  type: "code", language: "js" };
             if (res.code.length > 0)
                 mongoManager.saveCode(res);
 
