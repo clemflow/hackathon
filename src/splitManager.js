@@ -42,6 +42,7 @@ module.exports = {
             // console.log("tag = " + this.getFromBetween.get(code, "tag=\"","\"").split(",").toString());
             // console.log("desc = " + this.getFromBetween.get(code, "description=\"","\""));
             let tmp = code[0] + '*';
+            console.log("code 1 : " + code[1] );
             res = {tag: this.getFromBetween.get(code[0], "tag=\"","\"").toString().split(","),
                 description: this.getFromBetween.get(code[0], "description=\"","\"")[0],
             author: authorName, code: this.getFromBetween.get(tmp, "$$", "*"),  type: "code", language: code[1] };
@@ -53,7 +54,6 @@ module.exports = {
         //console.log(all);
     }
 };
-
 
 // <$ tag="paranthesis,c#,test" description="just a example." $$
 function test() {
