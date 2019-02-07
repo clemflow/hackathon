@@ -20,3 +20,5 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
 
 // $>
 
+//  use hackathon;
+//  db.codes.find().pretty()

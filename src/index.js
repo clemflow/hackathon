@@ -54,6 +54,11 @@ app.get('/all', async function(req, res) {
     res.send(result);
 });
 
+app.post('/add', async function(req, res) {
+    console.log(req.body);      // your JSON
+    let result = await mongoManager.saveCode(req.body);
+    res.send("ok");
+});
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
