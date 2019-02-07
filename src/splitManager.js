@@ -35,15 +35,16 @@ module.exports = {
         }
     },
     getTags: function (codesArray, authorName) {
-        res = {};
+        all = [];
         for (const code of codesArray) {
             // console.log("tag = " + this.getFromBetween.get(code, "tag=\"","\"").split(",").toString());
             // console.log("desc = " + this.getFromBetween.get(code, "description=\"","\""));
-            res.append({tag: this.getFromBetween.get(code, "tag=\"","\"").toString().split(","),
+            res = {tag: this.getFromBetween.get(code, "tag=\"","\"").toString().split(","),
                 description: this.getFromBetween.get(code, "description=\"","\""),
-            author: authorName, code: this.getFromBetween.get(code, "$$", "$>") })
+            author: authorName, code: this.getFromBetween.get(code, "$$", "$>") };
+            all.push(res);
         }
-        console.log(res);
+        console.log(all);
     }
 };
 
