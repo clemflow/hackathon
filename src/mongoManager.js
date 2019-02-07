@@ -35,9 +35,22 @@ module.exports = {
 
     findCodeById: async function (pluginId) {
         const db = await MongoClient.connect(url, { useNewUrlParser: true });
-        let dbo = db.db("codes");
-        const res = await dbo.collection("plugins").findOne({ "id": parseInt(pluginId)});
+        let dbo = db.db("hackathon");
+        const res = await dbo.collection("codes").findOne({ "id": parseInt(pluginId)});
         db.close();
         return  res;
+    },
+
+    findAll: async function() {
+        MongoClient.connect(url, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db("hackathon");
+            dbo.collection("codes").find({}).toArray(function(err, result) {
+                if (err) throw err;
+                console.log(result);
+                db.close();
+                return result;
+            });
+        });
     }
 };
