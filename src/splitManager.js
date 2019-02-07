@@ -41,11 +41,11 @@ module.exports = {
         for (const code of codesArray) {
             // console.log("tag = " + this.getFromBetween.get(code, "tag=\"","\"").split(",").toString());
             // console.log("desc = " + this.getFromBetween.get(code, "description=\"","\""));
-            let tmp = code[0] + '*';
-            console.log("code 1 : " + code[1] );
-            res = {tag: this.getFromBetween.get(code[0], "tag=\"","\"").toString().split(","),
-                description: this.getFromBetween.get(code[0], "description=\"","\"")[0],
-            author: authorName, code: this.getFromBetween.get(tmp, "$$", "*"),  type: "code", language: code[1] };
+            let tmp = code.code + '*';
+            console.log("code 1 : " + code.lang );
+            res = {tag: this.getFromBetween.get(code.code, "tag=\"","\"").toString().split(","),
+                description: this.getFromBetween.get(code.code, "description=\"","\"")[0],
+            author: authorName, code: this.getFromBetween.get(tmp, "$$", "*"),  type: "code", language: code.lang };
             if (res.code.length > 0)
                 mongoManager.saveCode(res);
 

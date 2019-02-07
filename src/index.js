@@ -30,7 +30,7 @@ webhookHandler.on('push', async function (repo, data) {
         console.log("ext : " + re.exec(filePath)[1]);
 
         let response = await axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config);
-        codeToSave = _.concat(codeToSave, [splitter.getFromBetween.get(response.data, "<$","$>"), re.exec(filePath)[1]]);
+        codeToSave = _.concat(codeToSave, { code: splitter.getFromBetween.get(response.data, "<$","$>"), lang: re.exec(filePath)[1]});
     }
 
     splitter.getTags(codeToSave, data.head_commit.committer.name);
