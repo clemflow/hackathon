@@ -42,6 +42,7 @@ module.exports = {
             // console.log("tag = " + this.getFromBetween.get(code, "tag=\"","\"").split(",").toString());
             // console.log("desc = " + this.getFromBetween.get(code, "description=\"","\""));
             let tmp = code.code + '*';
+            console.log("code code : " + code.code );
             console.log("code 1 : " + code.lang );
             res = {tag: this.getFromBetween.get(code.code, "tag=\"","\"").toString().split(","),
                 description: this.getFromBetween.get(code.code, "description=\"","\"")[0],
