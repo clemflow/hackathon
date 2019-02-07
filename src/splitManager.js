@@ -56,7 +56,7 @@ module.exports = {
 };
 
 
-// <$ tag="paranthesis,c#,test" description="just a example." $$
+// <$ tag="test,javascript,demo" description="just a example." $$
 function test() {
     let str = "hfsuhfus uifezf fzifz <'$' triger part '$'> effbhfbrfref <'$other triger part $'> be";
     let result = getFromBetween.get(str,"<'$","$'>");
