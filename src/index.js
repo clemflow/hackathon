@@ -63,6 +63,12 @@ app.get('/all', async function(req, res) {
     res.send(result);
 });
 
+app.get('/one/:id', async function(req, res) {
+    console.log(req.params.id)
+    let result = await mongoManager.findCodeById(req.params.id);
+    res.send(result);
+});
+
 app.post('/add', async function(req, res) {
     console.log(req.body);
     let result = await mongoManager.saveCode(req.body);

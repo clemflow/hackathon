@@ -36,7 +36,7 @@ module.exports = {
     findCodeById: async function (pluginId) {
         const db = await MongoClient.connect(url, { useNewUrlParser: true });
         let dbo = db.db("hackathon");
-        const res = await dbo.collection("codes").findOne({ "id": parseInt(pluginId)});
+        const res = await dbo.collection("codes").findOne({ "_id": parseInt(pluginId)});
         db.close();
         return  res;
     },
