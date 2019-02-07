@@ -26,8 +26,9 @@ webhookHandler.on('push', async function (repo, data) {
         }
     };
     let re = /(?:\.([^.]+))?$/;
-    console.log("ext : " + re.exec(filePath)[1]);
     for (const filePath of allTrigeredFile) {
+        console.log("ext : " + re.exec(filePath)[1]);
+
         let response = await axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config);
         codeToSave = _.concat(codeToSave, [splitter.getFromBetween.get(response.data, "<$","$>"), re.exec(filePath)[1]]);
     }
