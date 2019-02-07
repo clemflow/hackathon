@@ -37,13 +37,17 @@ module.exports = {
     getTags: function (codesArray, authorName) {
         res = {};
         for (const code of codesArray) {
-            console.log("tag = " + this.getFromBetween.get(code, "tag=\"","\""));
-            console.log("desc = " + this.getFromBetween.get(code, "description=\"","\""));
+            // console.log("tag = " + this.getFromBetween.get(code, "tag=\"","\"").split(",").toString());
+            // console.log("desc = " + this.getFromBetween.get(code, "description=\"","\""));
+            res.append({tag: this.getFromBetween.get(code, "tag=\"","\"").split(","),
+                description: this.getFromBetween.get(code, "description=\"","\""),
+            author: authorName, code: this.getFromBetween(code, "$$", "$>") })
         }
+        console.log(res);
     }
 };
 
-// <$ tag="paranthesis,c#,test" description="just a example."
+// <$ tag="paranthesis,c#,test" description="just a example." $$
 function test() {
     let str = "hfsuhfus uifezf fzifz <'$' triger part '$'> effbhfbrfref <'$other triger part $'> be";
     var result = getFromBetween.get(str,"<$","$>");
