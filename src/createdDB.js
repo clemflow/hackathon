@@ -1,7 +1,7 @@
 let MongoClient = require('mongodb').MongoClient;
 let url = "mongodb://localhost:27017/hackathon";
 
-// <$ description="init mongo" tags="test;javascript;mongodb"
+// <$ description="init mongo" tag="test;javascript;mongodb" $$
 
 MongoClient.connect(url,  { useNewUrlParser: true }, function(err, db) {
     if (err) throw err;
