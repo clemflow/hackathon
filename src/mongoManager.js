@@ -42,15 +42,10 @@ module.exports = {
     },
 
     findAll: async function() {
-        MongoClient.connect(url, function(err, db) {
-            if (err) throw err;
-            var dbo = db.db("hackathon");
-            dbo.collection("codes").find({}).toArray(function(err, result) {
-                if (err) throw err;
-                console.log(result);
-                db.close();
-                return result;
-            });
-        });
+        const db = await MongoClient.connect(url, { useNewUrlParser: true });
+        let dbo = db.db("hackathon");
+        let result = await dbo.collection("codes").find({});
+        db.close();
+        return result;
     }
 };

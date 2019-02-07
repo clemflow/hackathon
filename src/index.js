@@ -44,7 +44,7 @@ webhookHandler.on('error', function (err, req, res) {
 
 app.get('/test', function(req, res) {
     res.send('hello world');
-    var myobj = { name: "Company Inc", address: "Highway 37" };
+    let myobj = { tag: ['c#', 'mongo'] };
     mongoManager.saveCode(myobj)
 });
 
@@ -52,7 +52,6 @@ app.get('/all', async function(req, res) {
     let result = await mongoManager.findAll();
     res.send(result);
 });
-
 
 
 app.listen(3000, function () {
