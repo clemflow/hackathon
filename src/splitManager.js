@@ -50,9 +50,6 @@ module.exports = {
                 date: new Date()};
             if (res.code.length > 0)
                 mongoManager.saveCode(res);
-
-            //all.push(res);
-
         }
         //console.log(all);
     }
