@@ -32,7 +32,7 @@ webhookHandler.on('push', async function (repo, data) {
         codeToSave = _.concat(codeToSave, [splitter.getFromBetween.get(response.data, "<$","$>"), re.exec(filePath)[1]]);
     }
 
-    splitter.getTags(codeToSave, data.head_commit.committer.name, "test");
+    splitter.getTags(codeToSave, data.head_commit.committer.name);
 });
 
 webhookHandler.on('*', function (event, repo, data) {
