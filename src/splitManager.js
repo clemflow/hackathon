@@ -33,12 +33,19 @@ module.exports = {
             this.getAllResults(sub1,sub2);
             return this.results;
         }
+    },
+    getTags: function (codesArray, authorName) {
+        res = {};
+        for (const code of codesArray) {
+            console.log("tag = " + this.getFromBetween.get(code, "tag=\"","\""));
+            console.log("desc = " + this.getFromBetween.get(code, "description=\"","\""));
+        }
     }
 };
 
 
 
-// <$ TAG=['test', ''] LG=javascript
+// <$ tag="paranthesis,c#,test" description="just a example."
 function test() {
     let str = "hfsuhfus uifezf fzifz <'$' triger part '$'> effbhfbrfref <'$other triger part $'> be";
     var result = getFromBetween.get(str,"<$","$>");

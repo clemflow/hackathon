@@ -27,14 +27,13 @@ webhookHandler.on('push', async function (repo, data) {
     };
 
     for (const filePath of allTrigeredFile) {
-        console.log(filePath)
         let response = await axios.get('https://api.github.com/repos/'+ data.repository.full_name +'/contents/' + filePath, config);
         codeToSave = _.concat(codeToSave, splitter.getFromBetween.get(response.data, "<$","$>"));
         //     console.log(data.head_commit.committer.name);
     }
 
-
-    mongoManager.saveCode("{test : \"test\"}");
+    splitter.getTags(codeToSave);
+    //mongoManager.saveCode("{test : \"test\"}");
     console.log(codeToSave);
 });
 
