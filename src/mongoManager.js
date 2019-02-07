@@ -1,4 +1,5 @@
 let MongoClient = require('mongodb').MongoClient;
+let ObjectID = require('mongodb').ObjectID;
 let url = "mongodb://mongodb:27017/hackathon";
 
 module.exports = {
@@ -36,7 +37,7 @@ module.exports = {
     findCodeById: async function (pluginId) {
         const db = await MongoClient.connect(url, { useNewUrlParser: true });
         let dbo = db.db("hackathon");
-        const res = await dbo.collection("codes").findOne({ "_id": parseInt(pluginId)});
+        const res = await dbo.collection("codes").findOne({ "_id": ObjectID(pluginId)});
         db.close();
         return  res;
     },
