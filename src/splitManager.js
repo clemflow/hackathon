@@ -41,7 +41,7 @@ module.exports = {
             // console.log("desc = " + this.getFromBetween.get(code, "description=\"","\""));
             res.append({tag: this.getFromBetween.get(code, "tag=\"","\"").toString().split(","),
                 description: this.getFromBetween.get(code, "description=\"","\""),
-            author: authorName, code: this.getFromBetween(code, "$$", "$>") })
+            author: authorName, code: this.getFromBetween.get(code, "$$", "$>") })
         }
         console.log(res);
     }
