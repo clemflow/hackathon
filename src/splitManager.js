@@ -40,10 +40,11 @@ module.exports = {
             // console.log("tag = " + this.getFromBetween.get(code, "tag=\"","\"").split(",").toString());
             // console.log("desc = " + this.getFromBetween.get(code, "description=\"","\""));
             console.log(code);
+            let tmp = code + '*';
             console.log(this.getFromBetween.get(code, "$$", "$>"));
             res = {tag: this.getFromBetween.get(code, "tag=\"","\"").toString().split(","),
                 description: this.getFromBetween.get(code, "description=\"","\"")[0],
-            author: authorName, code: this.getFromBetween.get(code, "$$", "$>") };
+            author: authorName, code: this.getFromBetween.get(tmp, "$$", "*") };
             all.push(res);
         }
         console.log(all);
