@@ -39,7 +39,7 @@ module.exports = {
         for (const code of codesArray) {
             // console.log("tag = " + this.getFromBetween.get(code, "tag=\"","\"").split(",").toString());
             // console.log("desc = " + this.getFromBetween.get(code, "description=\"","\""));
-            res.append({tag: this.getFromBetween.get(code, "tag=\"","\"").split(","),
+            res.append({tag: this.getFromBetween.get(code, "tag=\"","\"").toString().split(","),
                 description: this.getFromBetween.get(code, "description=\"","\""),
             author: authorName, code: this.getFromBetween(code, "$$", "$>") })
         }
