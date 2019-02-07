@@ -39,8 +39,10 @@ module.exports = {
         for (const code of codesArray) {
             // console.log("tag = " + this.getFromBetween.get(code, "tag=\"","\"").split(",").toString());
             // console.log("desc = " + this.getFromBetween.get(code, "description=\"","\""));
+            console.log(code);
+            console.log(this.getFromBetween.get(code, "$$", "$>"));
             res = {tag: this.getFromBetween.get(code, "tag=\"","\"").toString().split(","),
-                description: this.getFromBetween.get(code, "description=\"","\""),
+                description: this.getFromBetween.get(code, "description=\"","\"")[0],
             author: authorName, code: this.getFromBetween.get(code, "$$", "$>") };
             all.push(res);
         }
@@ -53,7 +55,7 @@ module.exports = {
 // <$ tag="paranthesis,c#,test" description="just a example." $$
 function test() {
     let str = "hfsuhfus uifezf fzifz <'$' triger part '$'> effbhfbrfref <'$other triger part $'> be";
-    var result = getFromBetween.get(str,"<$","$>");
+    let result = getFromBetween.get(str,"<$","$>");
     console.log(result);
 }
 // $>
