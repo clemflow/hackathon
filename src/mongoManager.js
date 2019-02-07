@@ -44,7 +44,8 @@ module.exports = {
     findAll: async function() {
         const db = await MongoClient.connect(url, { useNewUrlParser: true });
         let dbo = db.db("hackathon");
-        let result = await dbo.collection("codes").find({});
+        let result = await dbo.collection("codes").find({}).toArray();
+        console.log(result);
         db.close();
         return result;
     }

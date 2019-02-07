@@ -44,7 +44,8 @@ webhookHandler.on('error', function (err, req, res) {
 
 app.get('/test', function(req, res) {
     res.send('hello world');
-    let myobj = { tag: ['c#', 'mongo'] };
+    let myobj = { tag: ['c#', 'mongo'], description: "some description.",
+    author: "Jules Cesar", code: "function () { \n console.log('hello') \n}" };
     mongoManager.saveCode(myobj)
 });
 
