@@ -45,7 +45,8 @@ module.exports = {
             console.log("code 1 : " + code.lang );
             res = {tag: this.getFromBetween.get(code.code, "tag=\"","\"").toString().split(","),
                 description: this.getFromBetween.get(code.code, "description=\"","\"")[0],
-            author: authorName, code: this.getFromBetween.get(tmp, "$$", "*"),  type: "code", language: code.lang };
+            author: authorName, code: this.getFromBetween.get(tmp, "$$", "*"),  type: "code", language: code.lang,
+                date: new Date()};
             if (res.code.length > 0)
                 mongoManager.saveCode(res);
 
